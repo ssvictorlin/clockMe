@@ -48,19 +48,6 @@ jQuery(document).ready(function($) {
 
     moment.lang(lang);
 
-	//connect do Xbee monitor
-	// var socket = io.connect('http://rpi-alarm.local:8082');
-	// socket.on('dishwasher', function (dishwasherReady) {
-	// 	if (dishwasherReady) {
-	// 		$('.dishwasher').fadeIn(2000);
-	// 		$('.lower-third').fadeOut(2000);
-	// 	} else {
-	// 		$('.dishwasher').fadeOut(2000);
-	// 		$('.lower-third').fadeIn(2000);
-	// 	}
-	// });
-
-
 	(function checkVersion()
 	{
 		$.getJSON('githash.php', {}, function(json, textStatus) {
@@ -176,7 +163,7 @@ jQuery(document).ready(function($) {
     	});
 	})();
 
-	/*(function updateCalendar()
+	(function updateCalendar()
 	{
 		table = $('<table/>').addClass('xsmall').addClass('calendar-table');
 		opacity = 1;
@@ -199,7 +186,7 @@ jQuery(document).ready(function($) {
         	updateCalendar();
         }, 1000);
 	})();
-*/
+
 	(function updateCompliment()
 	{
         //see compliments.js
@@ -251,8 +238,11 @@ jQuery(document).ready(function($) {
 		}
 
 
-		$.getJSON('http://api.openweathermap.org/data/2.5/weather', weatherParams, function(json, textStatus) {
+		$.getJSON('http://api.openweathermap.org/data/2.5/weather?id=5391832&APPID=9cfc56475668cf8c2888fb9305b56f5f', weatherParams, function(json, textStatus) {
 
+			var loc = json.name +', '+ json.sys.country;
+
+			$('.location').updateWithText(loc, 1000);
 			var temp = roundVal(json.main.temp);
 			var temp_min = roundVal(json.main.temp_min);
 			var temp_max = roundVal(json.main.temp_max);
@@ -263,8 +253,7 @@ jQuery(document).ready(function($) {
 			var icon = $('<span/>').addClass('icon').addClass('dimmed').addClass('wi').addClass(iconClass);
 			$('.temp').updateWithText(icon.outerHTML()+temp+'&deg;', 1000);
 
-			// var forecast = 'Min: '+temp_min+'&deg;, Max: '+temp_max+'&deg;';
-			// $('.forecast').updateWithText(forecast, 1000);
+			
 
 			var now = new Date();
 			var sunrise = new Date(json.sys.sunrise*1000).toTimeString().substring(0,5);
@@ -306,7 +295,7 @@ jQuery(document).ready(function($) {
 			'13n':'wi-night-snow',
 			'50n':'wi-night-alt-cloudy-windy'
 		}
-			$.getJSON('http://api.openweathermap.org/data/2.5/forecast', weatherParams, function(json, textStatus) {
+			$.getJSON('http://api.openweathermap.org/data/2.5/forecast?id=5391832&APPID=9cfc56475668cf8c2888fb9305b56f5f', weatherParams, function(json, textStatus) {
 
 			var forecastData = {};
 

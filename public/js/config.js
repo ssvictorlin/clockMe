@@ -6,7 +6,7 @@ var lang = 'en';
 //change weather params here:
 //units: metric or imperial
 var weatherParams = {
-    'q':'Taipei,TW',
+    'q':'San Diego',
     'units':'metric',
     'lang':lang
 };
