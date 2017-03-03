@@ -1,8 +1,44 @@
 <html>
 <head>
-	<title>Test Page</title>
+	<title>Smart Alarm</title>
+		<link rel="stylesheet" type="text/css" href="/css/main.css">
+		<link rel="stylesheet" type="text/css" href="/css/weather-icons.css">
+
+
 </head>
 <body>
-Begin here (or replace this with any static code already written).
+	<div id="cycler">
+		<img class="active" src="/images/tumblr_n22xkk96Gu1qei2wfo1_1280.jpg" />
+	  	<img class="img2" src="/images/tumblr_nhnsy4KhX11skrctjo1_1280.jpg" />
+	  	<img class="img3" src="/images/tumblr_n8q3xwbAvn1ri06y7o4_1280.jpg" />
+	  	<img class="img4" src="/images/tumblr_n8q3xwbAvn1ri06y7o5_1280.jpg" />
+	</div>
+  	
+	<div class="top left">
+		<div class="date small dimmed"></div>
+		<div class="time"></div>
+		<div class="calendar xxsmall"></div>
+	</div>
+	<div class="top right">
+		<div class="windsun small dimmed"></div>
+		<div class="temp"></div>
+		<div class="forecast small dimmed"></div>
+	</div>
+	<div class="center-ver center-hor"><!-- <div class="dishwasher light">Vaatwasser is klaar!</div> --></div>
+	<div class="lower-third center-hor"><div class="compliment light"></div></div>
+	<div class="bottom center-hor"><div class="news medium"></div></div>
+	
+	<div style="position:relative;z-index:5; width:100%;margin-right:auto;margin-left:auto;"><p id="time" style="font-size:400px; text-align:center; color:#0099FF;"></p></div>
+    
+    <video id="video" style="float: left; margin-right: 1em; display:none;"></video>
+
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/changebackground.js"></script>
+	<script src="/js/jquery.feedToJSON.js"></script>
+	<script src="/js/ical_parser.js"></script>
+	<script src="/js/moment-with-langs.min.js"></script>
+	<script src="/js/config.js"></script>
+	<script src="/js/rrule.js"></script>
 </body>
 </html>
