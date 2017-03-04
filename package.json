@@ -1,14 +1,12 @@
 {
-  "name": "IntroHCI",
+  "name": "SmartAlarm",
   "version": "0.0.1",
   "author": "ssvictorlin",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/ssvictorlin/clockMe"
   },
   "license": "MIT",
-
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -16,10 +14,11 @@
   "dependencies": {
     "express": "3.x",
     "express3-handlebars": "*",
+    "mmm-usonic": "^2.5.3",
     "mongodb": "*",
     "mongoose": "*"
   },
   "engines": {
     "node": "0.10.x"
-  }  
+  }
 }
