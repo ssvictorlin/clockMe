@@ -18,19 +18,19 @@ var feed = 'http://rss.news.yahoo.com/rss/topstories';
 
 // compliments:
 var morning = [
-            'Good morning, handsome!',
-            'Enjoy your day!',
+            'Good morning!',
+            'It will be a good day!',
             'How was your sleep?'
         ];
         
 var afternoon = [
-            'Hello, beauty!',
-            'You look sexy!',
+            'Hello, there!',
+            'You look great!',
             'Looking good today!'
         ];
        
 var evening = [
-            'Wow, you look hot!',
+            'Wow, you are awesome!',
             'You look nice!',
-            'Hi, sexy!'
+            'Today you rocked!'
         ];
