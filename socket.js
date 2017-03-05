@@ -10,21 +10,16 @@ module.exports = function (io) {
         socket.emit('welcome', { message: 'Welcome!'});
 
         socket.on('req-swipe', function (data) {
-            console.log("receiving swipe req message..."); 
+            //console.log("receiving swipe req message..."); 
             if (swipe == 'left' ) {
                 console.log("sending swipe message..."); 
                 socket.emit('res-swipe', { message: 'left'});
             } else {
-                console.log("sending no swipe message..."); 
+                //console.log("sending no swipe message..."); 
                 socket.emit('res-swipe', { message: 'right'});
             }
         });
-    });
-    /*if (swipe == 'left' ) {
-        console.log("sending message..."); 
-        io.sockets.emit('welcome', { message: 'left'});
-    }*/
-        
+    }); 
 };
 
 

@@ -16,13 +16,13 @@ var prefix = [
 ];
 
 socket.on('welcome', function(data) {
-    console.log("receiving message...");
+    //console.log("receiving message...");
     addMessage(data.message);
     socket.emit('req-swipe', {swipe: 'none'});
 });
 
 socket.on('res-swipe', function (data) {
-    console.log("receiving swipe...");
+    //console.log("receiving swipe...");
     addMessage(data.message);
     socket.emit('req-swipe', {swipe: 'none'});
 });
