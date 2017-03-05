@@ -14,10 +14,11 @@ module.exports = function (io) {
             if (swipe == 'left') { 
                 socket.emit('res-swipe', { message: 'left'});
             } else if (swipe == 'right') {
-                //console.log("sending no swipe message..."); 
                 socket.emit('res-swipe', { message: 'right'});
+            } else {
+                socket.emit('res-swipe', { message: 'none'})
+                swipe = null;
             }
-            swipe = null;
         });
     }); 
 };
