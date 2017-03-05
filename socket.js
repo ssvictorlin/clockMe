@@ -1,12 +1,14 @@
-
-/*
- * GET home page.
- */
 var usonic = require('mmm-usonic');
 
-exports.view = function(req, res){
-   // setInterval(measureDistance, 100);
-    res.render('index');
+module.exports = function (io) {
+
+    setInterval(measureDistance, 100);
+    io.sockets.on('connection', function (socket) {
+        socket.on('message', function(data) {
+                console.log(data);
+                socket.emit('Hello');
+        });
+    });
 };
 
 
@@ -18,4 +20,4 @@ function measureDistance() {
     var distanceRight = sensorRight();
     console.log("Right distance is " + distanceRight);
 }
-    
+

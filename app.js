@@ -7,7 +7,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
-
+var usonic = require('mmm-usonic');
 var index = require('./routes/index');
 // Example route
 // var user = require('./routes/user');
@@ -36,11 +36,25 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+usonic.init(function (error) {
+    if (error) {
+         console.log("Error init...");
+    } else {
+         console.log("Successful init...");
+    }
+});
 // Add routes here
 app.get('/', index.view);
 // Example route
 // app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+var io = require('socket.io')(server);
+require('./socket')(io);
+
+
+server.listen(3000);
+
+
