@@ -17,7 +17,6 @@
     "mmm-usonic": "^2.5.3",
     "mongodb": "*",
     "mongoose": "*",
-    "socket-io": "^1.0.0",
     "socket.io": "^1.7.3"
   },
   "engines": {
