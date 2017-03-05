@@ -6,16 +6,6 @@
 	var animations = [
 		'horizontal',
 		'horizontal-reverse',
-		'vertical',
-		'vertical-reverse',
-		'horizontal-easing',
-		'horizontal-easing-reverse',
-		'vertical-easing',
-		'vertical-easing-reverse',
-		'horizontal-fade',
-		'horizontal-fade-reverse',
-		'vertical-fade',
-		'vertical-fade-reverse'
 	];
 
 	var countAnimations = 0;
@@ -33,23 +23,23 @@
 		}
 
 		isAnim = true;
-
-		if(flag) {
-			$(this).attr('href', '#page-2');
-			flag = false;
-		} else {
+        var current = document.getElementsByClassName('current-page');
+        var cur_id = current[0].id;
+        console.log("current page: " + cur_id);
+		if(dir == 'left' && cur_id == 'page-2') {
 			$(this).attr('href', '#page-1');
 			flag = true;
+		    $(this).attr('transition', animations[0]);
+		} else if (dir == 'right' && cur_id == 'page-1') {
+			$(this).attr('href', '#page-2');
+			flag = false;
+		    $(this).attr('transition', animations[1]);
 		}
 
-		var nextId = $(this).attr('href');
+		//var nextId = $(this).attr('href');
 		
-		$(this).attr('transition', animations[countAnimations]);
-		countAnimations++;
+		//$(this).attr('transition', animations[countAnimations]);
 
-		if(countAnimations === animations.length) {
-			countAnimations = 0;
-		}
 
 		for(var i = 0, len = prefix.length; i < len; i++) {
 			$(document).on(prefix[i], function() {
@@ -57,5 +47,5 @@
 				isAnim = false;
 			});
 		}
-	});
+    });
 })();
