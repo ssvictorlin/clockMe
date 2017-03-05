@@ -11,13 +11,13 @@ module.exports = function (io) {
 
         socket.on('req-swipe', function (data) {
             //console.log("receiving swipe req message..."); 
-            if (swipe == 'left' ) {
-                console.log("sending swipe message..."); 
+            if (swipe == 'left') { 
                 socket.emit('res-swipe', { message: 'left'});
-            } else {
+            } else if (swipe == 'right') {
                 //console.log("sending no swipe message..."); 
                 socket.emit('res-swipe', { message: 'right'});
             }
+            swipe = null;
         });
     }); 
 };
@@ -54,6 +54,7 @@ function measureDistance() {
     }
     else if (distanceRight < 20) {
         if (checkHistory(leftState)) {
+            swipe = 'right';
             console.log("Swipe Right...");
         }
     }
@@ -65,5 +66,5 @@ function checkHistory(state) {
    var sum = state.reduce(function (a, b) {
       return a + b;
    }, 0);
-   return (sum > 6); 
+   return (sum > 5); 
 }

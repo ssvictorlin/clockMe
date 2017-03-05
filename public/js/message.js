@@ -33,7 +33,7 @@ function addMessage(message) {
         console.log("trying to turn left");
         slideTo(message);    
     } else if (message == 'right') {
-        console.log("trying to turn left");
+        console.log("trying to turn right");
         slideTo(message);   
     }
 }
