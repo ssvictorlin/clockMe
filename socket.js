@@ -2,12 +2,10 @@ var usonic = require('mmm-usonic');
 
 module.exports = function (io) {
 
-    setInterval(measureDistance, 100);
+    //setInterval(measureDistance, 100);
     io.sockets.on('connection', function (socket) {
-        socket.on('message', function(data) {
-                console.log(data);
-                socket.emit('Hello');
-        });
+        console.log("sending message..."); 
+        socket.emit('welcome', { message: 'Welcome!'});
     });
 };
 
