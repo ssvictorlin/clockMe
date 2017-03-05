@@ -4,13 +4,19 @@ var socket = io();
 socket.on('welcome', function(data) {
     console.log("receiving message...");
     addMessage(data.message);
+    socket.emit('req-swipe', {swipe: 'none'});
+});
+
+socket.on('res-swipe', function (data) {
+    console.log("receiving swipe...");
+    addMessage(data.message);
 });
 
 function addMessage(message) {
-    var text = document.createTextNode(message),
-        el = document.createElement('li'),
-        messages = document.getElementById('messages');
-
-    el.appendChild(text);
-    messages.appendChild(el);
+    
+    console.log("message is: " + message);
+    if (message == 'left') {
+        console.log("trying to turn page");
+        $('button').trigger('click');    
+    }
 }

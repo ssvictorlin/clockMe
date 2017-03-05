@@ -1,15 +1,26 @@
 var usonic = require('mmm-usonic');
-var leftState = false;
-var rightState = false;
-
-
+var leftState = [0,0,0,0,0,0,0,0,0,0];
+var rightState = [0,0,0,0,0,0,0,0,0,0];
+var swipe = null;
 module.exports = function (io) {
-
-    setInterval(measureDistance, 100);
+    
+    setTimeout(measureDistance, 100);
     io.sockets.on('connection', function (socket) {
         console.log("sending message..."); 
         socket.emit('welcome', { message: 'Welcome!'});
+
+        socket.on('req-swipe', function (data) {
+            if (swipe == 'left' ) {
+                console.log("sending swipe message..."); 
+                socket.emit('res-swipe', { message: 'left'});
+            }
+        });
     });
+    /*if (swipe == 'left' ) {
+        console.log("sending message..."); 
+        io.sockets.emit('welcome', { message: 'left'});
+    }*/
+        
 };
 
 
@@ -17,33 +28,43 @@ function measureDistance() {
     var sensorLeft = usonic.createSensor(24, 23, 450);
     var sensorRight = usonic.createSensor(22, 27, 450);
     var distanceLeft = sensorLeft();
-    console.log("Left distance is " + distanceLeft);
+   // console.log("Left distance is " + distanceLeft);
     var distanceRight = sensorRight();
-    console.log("Right distance is " + distanceRight);
-
-    if (!leftState && !rightState) {
-        if (distanceLeft < 20) {
-            leftState = true;
-        }
-        else if (distanceRight < 20) {
-            rightState = true;
-        }
-    } 
-    else if (leftState && rightState) {
-        console.log("both too close...");
-        leftState = false;
-        rightState = false;
+   // console.log("Right distance is " + distanceRight);
+    //
+    if (distanceLeft > 0 && distanceLeft < 20) {
+        leftState.shift();
+        leftState.push(1);
+    } else {
+        leftState.shift();
+        leftState.push(0);
     }
-    else {
-        if (leftState && distanceRight < 20) {
+    if (distanceRight > 0 && distanceRight < 20) {
+        rightState.shift();
+        rightState.push(1);
+    } else {
+        rightState.shift();
+        rightState.push(0);
+    }
 
-            console.log("Swipe right...");
-            leftState = false;
-        }
-        else if (rightState && distanceLeft < 20) {
-
-            console.log("Swipe left...");
-            rightState = false;
+    if (distanceLeft < 20) {
+        if (checkHistory(rightState)) {
+            swipe = 'left';
+            console.log("Swipe Left...");
         }
     }
+    else if (distanceRight < 20) {
+        if (checkHistory(leftState)) {
+            console.log("Swipe Right...");
+        }
+    }
+
+    setTimeout(measureDistance, 50);
+}
+
+function checkHistory(state) {
+   var sum = state.reduce(function (a, b) {
+      return a + b;
+   }, 0);
+   return (sum > 6); 
 }
