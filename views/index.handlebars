@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-	<!--<button class='next' role='transition'>Next page</button>-->
+	<button class='next' role='transition' style="display:none;">Next page</button>
   	<div id='page-1' role='page'>
   		<div id="cycler">
 			<img class="active" src="/images/tumblr_n22xkk96Gu1qei2wfo1_1280.jpg" />
@@ -27,7 +27,7 @@
 			<div class="windsun small dimmed"></div>
 			<div class="forecast small dimmed"></div>
 		</div>
-		<div class="center-ver center-hor"><!-- <div class="dishwasher light">Vaatwasser is klaar!</div> --></div>
+		<div class="center-ver center-hor"></div>
 		<div class="lower-third center-hor"><div class="compliment light"></div></div>
 		<div class="bottom center-hor"><div class="news medium"></div></div>
 		
@@ -52,6 +52,7 @@
 	<script src="js/rrule.js"></script>
 	<script src="js/main.js?nocache=<?php echo md5(microtime()) ?>"></script>
 	<script src="js/page-transitions.js"></script>
+	<script src="js/example.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
 	<script src="js/message.js"></script>
 </body>

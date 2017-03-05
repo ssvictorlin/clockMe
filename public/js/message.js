@@ -31,10 +31,10 @@ function addMessage(message) {
     console.log("message is: " + message);
     if (message == 'left') {
         console.log("trying to turn left");
-        slideTo(message);    
+        $('button').trigger('click');  
     } else if (message == 'right') {
         console.log("trying to turn right");
-        slideTo(message);   
+        $('button').trigger('click');  
     }
 }
 

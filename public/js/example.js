@@ -27,6 +27,7 @@
 	];
 
 	next.on('click', function() {
+        //console.log("direction is "+dir);
 		if(isAnim) {
 			return false;
 		}

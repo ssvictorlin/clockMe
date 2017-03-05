@@ -17,21 +17,21 @@ module.exports = function (io) {
                 socket.emit('res-swipe', { message: 'right'});
             } else {
                 socket.emit('res-swipe', { message: 'none'})
-                swipe = null;
             }
+            swipe = null;
         });
     }); 
 };
 
 
 function measureDistance() {
-    var sensorLeft = usonic.createSensor(24, 23, 450);
+    var sensorLeft = usonic.createSensor(25, 23, 450);
     var sensorRight = usonic.createSensor(22, 27, 450);
     var distanceLeft = sensorLeft();
-   // console.log("Left distance is " + distanceLeft);
+    console.log("Left distance is " + distanceLeft);
     var distanceRight = sensorRight();
-   // console.log("Right distance is " + distanceRight);
-    //
+    //console.log("Right distance is " + distanceRight);
+
     if (distanceLeft > 0 && distanceLeft < 20) {
         leftState.shift();
         leftState.push(1);
@@ -60,7 +60,7 @@ function measureDistance() {
         }
     }
 
-    setTimeout(measureDistance, 50);
+    setTimeout(measureDistance,50);
 }
 
 function checkHistory(state) {
