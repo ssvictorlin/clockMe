@@ -26,8 +26,8 @@
 		'animationend'
 	];
 
-	next.on('click', function() {
-        //console.log("direction is "+dir);
+	next.bind('click', function(event, dir) {
+        console.log("direction is "+dir);
 		if(isAnim) {
 			return false;
 		}
