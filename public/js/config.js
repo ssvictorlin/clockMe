@@ -24,13 +24,13 @@ var morning = [
         ];
         
 var afternoon = [
-            'Hello, there!',
-            'You look great!',
-            'Looking good today!'
+            'Good morning!',
+            'It will be a good day!',
+            'How was your sleep?'
         ];
        
 var evening = [
-            'Wow, you are awesome!',
-            'You look nice!',
-            'Today you rocked!'
+            'Good morning!',
+            'It will be a good day!',
+            'How was your sleep?'
         ];
