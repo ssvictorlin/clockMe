@@ -18,7 +18,7 @@
 
 	next.bind('click', function(event, dir) {
         console.log("direction is "+dir);
-        dir = 'right';
+        //dir = 'right';
 		if(isAnim) {
 			return false;
 		}
@@ -29,19 +29,14 @@
         console.log("current page: " + cur_id);
 		if(dir == 'left' && cur_id == 'page-2') {
 			$(this).attr('href', '#page-1');
-			flag = true;
 		    $(this).attr('transition', animations[0]);
 		} else if (dir == 'right' && cur_id == 'page-1') {
 			$(this).attr('href', '#page-2');
-			flag = false;
 		    $(this).attr('transition', animations[1]);
 		}
 
 		//var nextId = $(this).attr('href');
 		
-		//$(this).attr('transition', animations[countAnimations]);
-
-
 		for(var i = 0, len = prefix.length; i < len; i++) {
 			$(document).on(prefix[i], function() {
 				$(document).off(prefix[i]);

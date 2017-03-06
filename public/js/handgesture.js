@@ -22,7 +22,7 @@ window.onload = function() {
 		}
 	
 		var fist_pos_old, angle = [0, 0];
-		var count = 15;
+		var count = 2;
 		var lock1 = false, lock2 = false;
 		function play() {
 			compatibility.requestAnimationFrame(play);
@@ -76,14 +76,14 @@ window.onload = function() {
 							   		if (!lock1) {
 							   			lock1 = true;
 							   			$('#playBtn').trigger('click');
-							   			count = 15;
+							   			count = 2;
 							   			lock1 = false;
 							   		}
 							   	} else {
 							   		if (!lock2) { 
 							   			lock2 = true;
 							   			$('#pauseBtn').trigger('click');
-							   			count = 15;
+							   			count = 2;
 							   			lock2 = false;
 							   		}
 							   	}
@@ -93,7 +93,7 @@ window.onload = function() {
 					} else if (coord[4] > 2) {
 						fist_pos_old = fist_pos;						
 					} else {
-						count = 15;
+					    count = 2;
 					}
 				
 					// Draw coordinates on video overlay:

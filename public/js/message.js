@@ -1,19 +1,7 @@
 
 var socket = io();
 
-var next = $('.next');
-var pages = $('.page');
-var animations = [
-    'horizontal',
-    'horizontal-reverse',
-];
-
-var flag = true;
-var isAnim = false;
-var prefix = [
-    'webkitAnimationEnd',
-    'animationend'
-];
+var flag1 = false, flag2 = false;
 
 socket.on('welcome', function(data) {
     //console.log("receiving message...");
@@ -28,35 +16,22 @@ socket.on('res-swipe', function (data) {
 });
 
 function addMessage(message) {
-    console.log("message is: " + message);
+    //console.log("message is: " + message);
     if (message == 'left') {
-        console.log("trying to turn left");
-        $('button').trigger('click', ['left']);  
+        if (!flag1) {
+            flag1 = true;
+            console.log("trying to turn left");
+            $('button').trigger('click', ['left']);
+        }  
     } else if (message == 'right') {
-        console.log("trying to turn right");
-        $('button').trigger('click', ['right']);  
-    }
-}
-
-function slideTo (dir) {
-    if(isAnim) {
-            return false;
+        if (!flag2) {
+            flag2 = true;
+            console.log("trying to turn right");
+            $('button').trigger('click', ['right']);  
         }
-
-    isAnim = true;
-
-    if(dir == 'left') {
-        $(this).attr('href', '#page-1');
-        $(this).attr('transition', animations[1]);
-    } else  if (dir == 'right') {
-        $(this).attr('href', '#page-2');
-        $(this).attr('transition', animations[0]);
-    }
-
-    for(var i = 0, len = prefix.length; i < len; i++) {
-        $(document).on(prefix[i], function() {
-            $(document).off(prefix[i]);
-            isAnim = false;
-        });
+    } else {
+       flag1 = false;
+       flag2 = false;
     }
 }
+

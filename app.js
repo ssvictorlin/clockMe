@@ -45,14 +45,12 @@ usonic.init(function (error) {
 });
 // Add routes here
 app.get('/', index.view);
-// Example route
-// app.get('/users', user.list);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-//var io = require('socket.io')(server);
-//require('./socket')(io);
+var io = require('socket.io')(server);
+require('./socket')(io);
 
 
 server.listen(3000);
