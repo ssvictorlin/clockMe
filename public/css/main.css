@@ -203,12 +203,11 @@ body, html {
 }
 
 [role="page"] {
-	background-color: blue;
 	height: 100%;
+	width: 100%;
 	overflow: hidden;
 	visibility: hidden;
 	position: absolute;
-	width: 100%;
 }
 
 .current-page {

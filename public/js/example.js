@@ -18,6 +18,7 @@
 
 	next.bind('click', function(event, dir) {
         console.log("direction is "+dir);
+        dir = 'right';
 		if(isAnim) {
 			return false;
 		}
