@@ -8,6 +8,7 @@ var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
 var usonic = require('mmm-usonic');
+var gpio = require('mmm-gpio');
 var index = require('./routes/index');
 // Example route
 // var user = require('./routes/user');
@@ -36,11 +37,18 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+gpio.init(function (error) {
+    if (error) {
+         console.log("Error init gpio...");
+    } else {
+         console.log("Successful init gpio...");
+    }
+});
 usonic.init(function (error) {
     if (error) {
-         console.log("Error init...");
+         console.log("Error init usonic...");
     } else {
-         console.log("Successful init...");
+         console.log("Successful init usonic...");
     }
 });
 // Add routes here

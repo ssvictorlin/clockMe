@@ -13,6 +13,7 @@ socket.on('res-swipe', function (data) {
     //console.log("receiving swipe...");
     addMessage(data.message);
     socket.emit('req-swipe', {swipe: 'none'});
+    
 });
 
 function addMessage(message) {
