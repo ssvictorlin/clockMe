@@ -7,12 +7,16 @@ window.onload = function() {
 			detector, timeoutHandle;
 	
 		try {
-			compatibility.getUserMedia({video: true}, function(stream) {
+			compatibility.getUserMedia({video: {frameRate:  {ideal:10, max:15}}}, function(stream) {
+                
 				try {
 					video.src = compatibility.URL.createObjectURL(stream);
 				} catch (error) {
 					video.src = stream;
 				}
+                var current = document.getElementsByClassName('current-page');
+                var cur_id = current[0].id;
+                console.log("current page: " + cur_id);
 				compatibility.requestAnimationFrame(play);
 			}, function (error) {
 				alert("WebRTC not available");
@@ -63,11 +67,11 @@ window.onload = function() {
 				            dy = (fist_pos[1] - fist_pos_old[1]) / video.videoHeight;
 						//console.log(fist_pos[0]);
 						
-						if (fist_pos[0]>video.videoWidth*0.75 &&fist_pos[1]>video.videoHeight*0.75){
+						/*if (fist_pos[0]>video.videoWidth*0.75 &&fist_pos[1]>video.videoHeight*0.75){
 						   console.log("PREV!!!!");
 						} else if (fist_pos[0]<video.videoWidth*0.25 &&fist_pos[1]>video.videoHeight*0.75){
 						   console.log("NEXT!!!!");
-						} else {
+						} else {*/
 							var playing = document.getElementById('playBtn');
 
 						    console.log("play button display: " + playing.style.display);
@@ -77,23 +81,23 @@ window.onload = function() {
 							   			lock1 = true;
 							   			$('#playBtn').trigger('click');
 							   			count = 2;
-							   			lock1 = false;
 							   		}
 							   	} else {
 							   		if (!lock2) { 
 							   			lock2 = true;
 							   			$('#pauseBtn').trigger('click');
 							   			count = 2;
-							   			lock2 = false;
 							   		}
 							   	}
 						    }
-						}
+						
 						fist_pos_old = fist_pos;
 					} else if (coord[4] > 2) {
 						fist_pos_old = fist_pos;						
 					} else {
 					    count = 2;
+                        lock1 = false;
+                        lock2 = false;
 					}
 				
 					// Draw coordinates on video overlay:
@@ -101,7 +105,7 @@ window.onload = function() {
 					context.lineWidth = '2';
 					context.fillStyle = fist_pos_old ? 'rgba(0, 255, 255, 1)' : 'rgba(255, 0, 0, 0)';
 					context.fillRect(
-						coord[0] / video.videoWidth * canvas.clientWidth-video.videoWidth*2.5,
+						coord[0] / video.videoWidth * canvas.clientWidth-video.videoWidth*2.8,
 						coord[1] / video.videoHeight * canvas.clientHeight,
 						coord[2] / video.videoWidth * canvas.clientWidth,
 						coord[3] / video.videoHeight * canvas.clientHeight);
